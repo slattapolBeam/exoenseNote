@@ -1,26 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    >
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <!-- หัวข้อแอป -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="บันทึกค่าใช้จ่ายประจำวัน"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            />
+
+        <!-- กล่องอินพุต -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- จำนวนเงิน -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="จำนวนเงิน (บาท)"
+                android:textSize="14sp"
+                android:textColor="#555555" />
+
+            <EditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="เช่น 45 หรือ 120.50"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:background="@android:drawable/edit_text" />
+
+            <!-- หมวดหมู่ (ComboBox) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="หมวดหมู่"
+                android:textSize="14sp"
+                android:textColor="#555555" />
+
+            <Spinner
+                android:id="@+id/spCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- แถวปุ่ม -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เคลียร์"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เพิ่มรายการ" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- สรุปข้อความ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card"
+        android:padding="16dp"
+        android:elevation="2dp"
         android:layout_marginBottom="16dp"
-        android:text="สรุปค่าใช้จ่ายวันนี้"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/tvLastItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="รายการล่าสุด: -"
+            android:textSize="14sp"
+            android:textColor="#424242"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            />
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="260dp"
-        android:layout_height="260dp" />
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ยอดรวมวันนี้: 0.00 บาท"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            />
 
-</LinearLayout>
+        <!-- หัวข้อกราฟ -->
+        <TextView
+            android:id="@+id/tvChartTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สัดส่วนค่าใช้จ่ายตามหมวดหมู่"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="8dp" />
+
+        <!-- PieChart (Donut) -->
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
